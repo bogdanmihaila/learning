@@ -5,7 +5,7 @@
   },
   "buttons": {
     "continue": "Continue",
-    "login": "Login"
+    "login": "LOGIN"
   },
   "inputs": {
     "username": "Enter username...",

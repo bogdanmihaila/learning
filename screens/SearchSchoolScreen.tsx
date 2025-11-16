@@ -8,8 +8,11 @@ import Text from "../components/Text";
 import { useSchoolSearch } from "../hooks/useSchoolSearch";
 import { theme } from "../theme";
 
+import { useAppNavigation } from "../hooks/useAppNavigation";
+
 export default function SearchSchoolScreen() {
   const { t } = useTranslation();
+  const navigation = useAppNavigation();
   const {
     searchQuery,
     selectedSchool,
@@ -25,7 +28,9 @@ export default function SearchSchoolScreen() {
   } = useSchoolSearch();
 
   const handlePress = () => {
-    console.log("Go to login ", selectedSchool);
+    if (selectedSchool) {
+      navigation.navigate("Login", { schoolName: selectedSchool });
+    }
   };
 
   const canShowButton = selectedSchool && !isInputFocused;
