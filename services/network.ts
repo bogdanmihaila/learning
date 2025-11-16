@@ -1,3 +1,6 @@
+import Toast from "react-native-toast-message";
+import i18n from "../i18n";
+
 const USE_MOCK_API = true;
 
 const MOCK_API_URL = "https://691a07019ccba073ee94a6cf.mockapi.io/api/v1";
@@ -64,7 +67,12 @@ export const searchSchools = async (query: string): Promise<School[]> => {
       return await searchSchoolsOnRealApi(query);
     }
   } catch (error) {
-    console.error("Error", error);
+    Toast.show({
+      type: "error",
+      text1: "Error",
+      text2: i18n.t("errors.fetchFailed"),
+      position: "bottom",
+    });
     throw error;
   }
 };

@@ -24,8 +24,8 @@ export const useSchoolSearch = () => {
       try {
         const schools = await searchSchools(debouncedQuery);
         setFilteredSchools(schools);
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {
-        console.error("Failed to fetch schools:", error);
         setFilteredSchools([]);
       } finally {
         setIsSearching(false);
@@ -81,4 +81,3 @@ export const useSchoolSearch = () => {
     handleBlur,
   };
 };
-
