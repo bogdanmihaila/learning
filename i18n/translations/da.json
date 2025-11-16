@@ -14,6 +14,9 @@
   },
   "helpers": {
     "addMoreSchools": "You can always add more schools later."
+  },
+  "errors": {
+    "noSchoolsFound": "Sorry, but we couldn't find any sites with that name"
   }
 }
 

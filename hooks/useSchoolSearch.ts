@@ -1,15 +1,20 @@
 import { useState } from "react";
 import { mockSchools } from "../mocks/schools";
+import { useDebouncedValue } from "./useDebouncedValue";
 
 export const useSchoolSearch = () => {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedSchool, setSelectedSchool] = useState<string | null>(null);
-  const [isInputFocused, setIsInputFocused] = useState(false);
+  const [isInputFocused, setIsInputFocused] = useState<boolean>(false);
+
+  const debouncedQuery = useDebouncedValue(searchQuery, 500);
+
+  const isSearching = searchQuery !== debouncedQuery && searchQuery.length > 0;
 
   const filteredSchools =
-    searchQuery.length > 0
+    debouncedQuery && debouncedQuery.length > 0
       ? mockSchools.filter((school) =>
-          school.name.toLowerCase().includes(searchQuery.toLowerCase())
+          school.name.toLowerCase().includes(debouncedQuery.toLowerCase())
         )
       : [];
 
@@ -47,6 +52,8 @@ export const useSchoolSearch = () => {
     selectedSchool,
     isInputFocused,
     filteredSchools,
+    isSearching,
+    hasSearched: !!debouncedQuery && debouncedQuery.length > 0,
     handleSearchChange,
     handleSelectSchool,
     handleCloseList,

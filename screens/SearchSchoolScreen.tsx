@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { StyleSheet, View } from "react-native";
+import { ActivityIndicator, StyleSheet, View } from "react-native";
 import Button from "../components/Button";
 import Screen from "../components/Screen";
 import SearchInput from "../components/SearchInput";
@@ -15,6 +15,8 @@ export default function SearchSchoolScreen() {
     selectedSchool,
     isInputFocused,
     filteredSchools,
+    isSearching,
+    hasSearched,
     handleSearchChange,
     handleSelectSchool,
     handleCloseList,
@@ -44,7 +46,12 @@ export default function SearchSchoolScreen() {
             onBlur={handleBlur}
             placeholder={t("inputs.searchSchool")}
           />
-          {filteredSchools.length > 0 && !selectedSchool && (
+          {isSearching && (
+            <View style={styles.loadingContainer}>
+              <ActivityIndicator size="large" color={theme.colors.text} />
+            </View>
+          )}
+          {!isSearching && filteredSchools.length > 0 && !selectedSchool && (
             <SearchResultsList
               results={filteredSchools}
               onSelectResult={handleSelectSchool}
@@ -54,6 +61,16 @@ export default function SearchSchoolScreen() {
               }
             />
           )}
+          {!isSearching &&
+            hasSearched &&
+            filteredSchools.length === 0 &&
+            !selectedSchool && (
+              <View style={styles.noResultsContainer}>
+                <Text style={styles.noResultsText}>
+                  {t("errors.noSchoolsFound")}
+                </Text>
+              </View>
+            )}
         </View>
         {!isInputFocused && (
           <Text style={styles.info}>{t("helpers.addMoreSchools")}</Text>
@@ -111,6 +128,19 @@ const styles = StyleSheet.create({
   },
   resultsListFocused: {
     marginTop: theme.spacing.spacing_16,
+  },
+  loadingContainer: {
+    marginTop: theme.spacing.spacing_24,
+    alignItems: "center",
+  },
+  noResultsContainer: {
+    marginTop: theme.spacing.spacing_24,
+    alignItems: "center",
+  },
+  noResultsText: {
+    fontSize: theme.typography.normal,
+    color: theme.colors.text,
+    textAlign: "center",
   },
   buttonContainer: {
     width: "100%",
