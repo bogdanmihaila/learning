@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleProp, StyleSheet, View, ViewStyle } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { colors } from "../theme/colors";
 
 interface ScreenProps {
   children: React.ReactNode;
@@ -29,7 +30,7 @@ const Screen = ({ children, style }: ScreenProps) => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: colors.background,
   },
 });
 
