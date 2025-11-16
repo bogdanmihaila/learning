@@ -1,9 +1,12 @@
+import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, View } from "react-native";
 
 export default function SearchSchoolScreen() {
+  const { t } = useTranslation();
+
   return (
     <View style={styles.container}>
-      <Text>Search School Screen</Text>
+      <Text>{t("screens.searchSchool")}</Text>
     </View>
   );
 }
