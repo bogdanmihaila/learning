@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { StyleSheet, Text } from "react-native";
 import Screen from "../components/Screen";
-import { colors } from "../theme/colors";
+import { theme } from "../theme";
 
 export default function LoginScreen() {
   const { t } = useTranslation();
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    color: colors.text,
+    color: theme.colors.text,
     fontSize: 24,
   },
 });

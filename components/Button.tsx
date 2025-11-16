@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
-import { colors } from "../theme/colors";
+import { theme } from "../theme";
 
 interface ButtonProps {
   title: string;
@@ -48,22 +48,22 @@ const Button = ({
 const styles = StyleSheet.create({
   button: {
     width: "100%",
-    paddingHorizontal: 24,
-    borderRadius: 8,
+    paddingHorizontal: theme.spacing.spacing_24,
+    borderRadius: theme.spacing.spacing_8,
     alignItems: "center",
     justifyContent: "center",
   },
   largeButton: {
-    paddingVertical: 16,
+    paddingVertical: theme.spacing.spacing_16,
   },
   smallButton: {
-    paddingVertical: 12,
+    paddingVertical: theme.spacing.spacing_12,
   },
   primaryButton: {
-    backgroundColor: colors.primaryButtonBackground,
+    backgroundColor: theme.colors.primaryButtonBackground,
   },
   secondaryButton: {
-    backgroundColor: colors.secondaryButtonBackground,
+    backgroundColor: theme.colors.secondaryButtonBackground,
   },
   text: {
     fontWeight: "600",
@@ -75,10 +75,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   primaryText: {
-    color: colors.primaryButtonText,
+    color: theme.colors.primaryButtonText,
   },
   secondaryText: {
-    color: colors.secondaryButtonText,
+    color: theme.colors.secondaryButtonText,
   },
   disabled: {
     opacity: 0.5,

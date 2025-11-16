@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { StyleSheet, View } from "react-native";
 import Button from "../components/Button";
 import Screen from "../components/Screen";
+import { theme } from "../theme";
 
 export default function SearchSchoolScreen() {
   const { t } = useTranslation();
@@ -27,12 +28,12 @@ export default function SearchSchoolScreen() {
 const styles = StyleSheet.create({
   container: {
     justifyContent: "flex-end",
-    paddingBottom: 72,
+    paddingBottom: theme.spacing.spacing_72,
   },
   content: {
     width: "100%",
   },
   spacer: {
-    height: 16,
+    height: theme.spacing.spacing_16,
   },
 });
