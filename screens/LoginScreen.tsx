@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet } from "react-native";
 import Screen from "../components/Screen";
+import Text from "../components/Text";
 import { theme } from "../theme";
 
 export default function LoginScreen() {
