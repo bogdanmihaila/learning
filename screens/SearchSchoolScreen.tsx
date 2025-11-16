@@ -1,25 +1,38 @@
 import { useTranslation } from "react-i18next";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, View } from "react-native";
+import Button from "../components/Button";
 import Screen from "../components/Screen";
-import { colors } from "../theme/colors";
 
 export default function SearchSchoolScreen() {
   const { t } = useTranslation();
 
+  const handlePress = () => {
+    console.log("Go to login");
+  };
+
   return (
     <Screen style={styles.container}>
-      <Text style={styles.text}>{t("screens.searchSchool")}</Text>
+      <View style={styles.content}>
+        <View style={styles.spacer} />
+        <Button
+          title={t("buttons.continue")}
+          onPress={handlePress}
+          variant="secondary"
+        />
+      </View>
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: "flex-end",
+    paddingBottom: 72,
   },
-  text: {
-    color: colors.text,
-    fontSize: 24,
+  content: {
+    width: "100%",
+  },
+  spacer: {
+    height: 16,
   },
 });

@@ -2,6 +2,9 @@
   "screens": {
     "login": "Login Screen",
     "searchSchool": "Search School Screen"
+  },
+  "buttons": {
+    "continue": "Continue",
+    "login": "Login"
   }
 }
-
