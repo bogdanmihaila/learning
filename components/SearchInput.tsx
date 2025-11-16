@@ -8,12 +8,16 @@ interface SearchInputProps {
   value: string;
   onChangeText: (text: string) => void;
   placeholder?: string;
+  onFocus?: () => void;
+  onBlur?: () => void;
 }
 
 const SearchInput = ({
   value,
   onChangeText,
   placeholder,
+  onFocus,
+  onBlur,
 }: SearchInputProps) => {
   return (
     <View style={styles.container}>
@@ -21,6 +25,8 @@ const SearchInput = ({
         value={value}
         onChangeText={onChangeText}
         placeholder={placeholder}
+        onFocus={onFocus}
+        onBlur={onBlur}
         style={styles.inputWithIcon}
       />
       <View style={styles.iconContainer}>

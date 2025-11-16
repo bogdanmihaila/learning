@@ -1,10 +1,19 @@
 {
   "screens": {
     "login": "Login Screen",
-    "searchSchool": "Search School Screen"
+    "searchSchool": "Choose a school you want to log in to"
   },
   "buttons": {
     "continue": "Continue",
     "login": "Login"
+  },
+  "inputs": {
+    "username": "Enter username...",
+    "password": "Enter password...",
+    "searchSchool": "Search for school"
+  },
+  "helpers": {
+    "addMoreSchools": "You can always add more schools later."
   }
 }
+
