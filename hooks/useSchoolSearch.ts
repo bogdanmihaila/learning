@@ -1,22 +1,39 @@
-import { useState } from "react";
-import { mockSchools } from "../mocks/schools";
+import { useEffect, useState } from "react";
+import type { School } from "../services/network";
+import { searchSchools } from "../services/network";
 import { useDebouncedValue } from "./useDebouncedValue";
 
 export const useSchoolSearch = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedSchool, setSelectedSchool] = useState<string | null>(null);
   const [isInputFocused, setIsInputFocused] = useState<boolean>(false);
+  const [filteredSchools, setFilteredSchools] = useState<School[]>([]);
+  const [isSearching, setIsSearching] = useState<boolean>(false);
 
   const debouncedQuery = useDebouncedValue(searchQuery, 500);
 
-  const isSearching = searchQuery !== debouncedQuery && searchQuery.length > 0;
+  useEffect(() => {
+    const fetchSchools = async () => {
+      if (!debouncedQuery || debouncedQuery.length === 0) {
+        setFilteredSchools([]);
+        setIsSearching(false);
+        return;
+      }
 
-  const filteredSchools =
-    debouncedQuery && debouncedQuery.length > 0
-      ? mockSchools.filter((school) =>
-          school.name.toLowerCase().includes(debouncedQuery.toLowerCase())
-        )
-      : [];
+      setIsSearching(true);
+      try {
+        const schools = await searchSchools(debouncedQuery);
+        setFilteredSchools(schools);
+      } catch (error) {
+        console.error("Failed to fetch schools:", error);
+        setFilteredSchools([]);
+      } finally {
+        setIsSearching(false);
+      }
+    };
+
+    fetchSchools();
+  }, [debouncedQuery]);
 
   const handleSearchChange = (text: string) => {
     setSearchQuery(text);
@@ -25,6 +42,7 @@ export const useSchoolSearch = () => {
     }
     if (text.length > 0) {
       setIsInputFocused(true);
+      setIsSearching(true);
     }
   };
 
@@ -37,6 +55,8 @@ export const useSchoolSearch = () => {
   const handleCloseList = () => {
     setSearchQuery("");
     setIsInputFocused(false);
+    setFilteredSchools([]);
+    setIsSearching(false);
   };
 
   const handleFocus = () => {
