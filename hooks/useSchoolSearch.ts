@@ -9,6 +9,7 @@ export const useSchoolSearch = () => {
   const [isInputFocused, setIsInputFocused] = useState<boolean>(false);
   const [filteredSchools, setFilteredSchools] = useState<School[]>([]);
   const [isSearching, setIsSearching] = useState<boolean>(false);
+  const [hasSearched, setHasSearched] = useState<boolean>(false);
 
   const debouncedQuery = useDebouncedValue(searchQuery, 500);
 
@@ -17,6 +18,7 @@ export const useSchoolSearch = () => {
       if (!debouncedQuery || debouncedQuery.length === 0) {
         setFilteredSchools([]);
         setIsSearching(false);
+        setHasSearched(false);
         return;
       }
 
@@ -24,9 +26,11 @@ export const useSchoolSearch = () => {
       try {
         const schools = await searchSchools(debouncedQuery);
         setFilteredSchools(schools);
+        setHasSearched(true);
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {
         setFilteredSchools([]);
+        setHasSearched(true);
       } finally {
         setIsSearching(false);
       }
@@ -54,9 +58,10 @@ export const useSchoolSearch = () => {
 
   const handleCloseList = () => {
     setSearchQuery("");
-    setIsInputFocused(false);
     setFilteredSchools([]);
     setIsSearching(false);
+    setHasSearched(false);
+    setIsInputFocused(false);
   };
 
   const handleFocus = () => {
@@ -73,7 +78,7 @@ export const useSchoolSearch = () => {
     isInputFocused,
     filteredSchools,
     isSearching,
-    hasSearched: !!debouncedQuery && debouncedQuery.length > 0,
+    hasSearched,
     handleSearchChange,
     handleSelectSchool,
     handleCloseList,
