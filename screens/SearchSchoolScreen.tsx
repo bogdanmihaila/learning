@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   title: {
-    fontSize: 24,
+    fontSize: theme.typography.big,
     fontWeight: "600",
     color: theme.colors.text,
     textAlign: "center",
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     zIndex: 10,
   },
   info: {
-    fontSize: 16,
+    fontSize: theme.typography.normal,
     color: theme.colors.text,
     textAlign: "center",
     marginTop: theme.spacing.spacing_32,

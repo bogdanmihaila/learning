@@ -21,6 +21,6 @@ const styles = StyleSheet.create({
   },
   text: {
     color: theme.colors.text,
-    fontSize: 24,
+    fontSize: theme.typography.big,
   },
 });

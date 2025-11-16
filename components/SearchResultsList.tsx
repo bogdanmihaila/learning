@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: theme.spacing.spacing_16,
   },
   resultText: {
-    fontSize: 16,
+    fontSize: theme.typography.normal,
     color: theme.colors.secondaryButtonText,
   },
 });

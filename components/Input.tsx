@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.inputBackground,
     borderRadius: theme.spacing.spacing_8,
     color: theme.colors.inputText,
-    fontSize: 16,
+    fontSize: theme.typography.normal,
   },
 });
 

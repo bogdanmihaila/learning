@@ -70,10 +70,10 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   largeText: {
-    fontSize: 16,
+    fontSize: theme.typography.normal,
   },
   smallText: {
-    fontSize: 14,
+    fontSize: theme.typography.smaller,
   },
   primaryText: {
     color: theme.colors.primaryButtonText,
